@@ -34,7 +34,6 @@ const formatPrice = (value) => `$${Number(value).toFixed(2)}`;
 const formatDate = (ts) => (ts?.toDate ? ts.toDate().toLocaleDateString() : "just now");
 const ms = (ts) => (ts?.toMillis ? ts.toMillis() : Date.now());
 
-// view: "all" | "returns" | "cancellations"
 const MyOrders = ({ view = "all" }) => {
     const { user } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
@@ -42,7 +41,6 @@ const MyOrders = ({ view = "all" }) => {
     const config = VIEWS[view];
 
     useEffect(() => {
-        // No orderBy (no composite index needed); sorted in the browser.
         const q = query(collection(db, "orders"), where("buyerId", "==", user.uid));
         return onSnapshot(
             q,

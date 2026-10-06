@@ -53,14 +53,14 @@ const INFO = [
 const ContactUs = () => {
     const { user } = useContext(AuthContext);
     const [sending, setSending] = useState(false);
-    const [formKey, setFormKey] = useState(0); // changing it clears the form
+    const [formKey, setFormKey] = useState(0);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (sending) return;
 
         const fd = new FormData(e.target);
-        if (fd.get("website")) return; // hidden spam trap: real people leave it empty
+        if (fd.get("website")) return;
 
         const name = fd.get("name").trim();
         const email = fd.get("email").trim();
@@ -143,7 +143,6 @@ const ContactUs = () => {
                                     <label className="block mb-1 text-sm">Your name</label>
                                     <input
                                         name="name"
-                                        defaultValue={user?.displayName || ""}
                                         className={inputClass}
                                         placeholder="Name"
                                     />
@@ -153,7 +152,6 @@ const ContactUs = () => {
                                     <input
                                         name="email"
                                         type="email"
-                                        defaultValue={user?.email || ""}
                                         className={inputClass}
                                         placeholder="you@example.com"
                                     />
@@ -197,8 +195,8 @@ const ContactUs = () => {
                 </section>
 
                 {/* FAQ */}
-                <section className="px-6 pb-20">
-                    <div className="max-w-3xl mx-auto">
+                <section className="px-20 pb-20">
+                    <div className="mx-auto">
                         <h2 className="text-3xl font-semibold text-center mb-8">
                             Frequently asked questions
                         </h2>

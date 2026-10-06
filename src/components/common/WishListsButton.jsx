@@ -6,9 +6,6 @@ import { Heart } from "lucide-react";
 import { db } from "../../firebase/firebase.config";
 import { AuthContext } from "../../provider/AuthContext";
 
-// Heart button that saves a product to the user's wishlist.
-// Usage: <WishlistButton product={{ id, name, price, image }} />
-//        <WishlistButton product={...} withLabel />   (text button for the product page)
 const WishListsButton = ({ product, withLabel = false, className = "" }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -57,11 +54,7 @@ const WishListsButton = ({ product, withLabel = false, className = "" }) => {
     };
 
     const icon = (
-        <Heart
-            size={withLabel ? 18 : 16}
-            className={isSaved ? "fill-red-500 text-red-500" : ""}
-        />
-    );
+        <Heart size={withLabel ? 18 : 16} className={isSaved ? "fill-red-500 text-red-500" : ""} />);
 
     if (withLabel) {
         return (

@@ -18,8 +18,8 @@ import { MessageCircle, Trash2 } from "lucide-react";
 import { db } from "../../firebase/firebase.config";
 import { AuthContext } from "../../provider/AuthContext";
 import BuyButton from "../common/BuyButton";
-import WishlistButton from "../common/WishlistButton";
-import ProductGallery from "../common/ProductGallery";
+import ProductGallery from "./ProductGallery";
+import WishListsButton from "./WishListsButton";
 
 const formatPrice = (value) => `$${Number(value).toFixed(2)}`;
 const formatDate = (ts) => (ts?.toDate ? ts.toDate().toLocaleString() : "just now");
@@ -48,7 +48,6 @@ const ProductDetails = () => {
     const isSeller = !!user && user.uid === sellerId;
     const isSold = product?.status === "sold";
 
-    // Load product
     useEffect(() => {
         getDoc(doc(db, "products", id))
             .then((snap) => {
@@ -58,7 +57,6 @@ const ProductDetails = () => {
             .finally(() => setLoading(false));
     }, [id]);
 
-    // Comments: public, realtime
     useEffect(() => {
         const q = query(
             collection(db, "products", id, "comments"),
@@ -71,7 +69,6 @@ const ProductDetails = () => {
         );
     }, [id]);
 
-    // Offers: seller sees all, a buyer sees only their own
     useEffect(() => {
         if (!user || !sellerId) return;
         const sellerView = user.uid === sellerId;
@@ -266,7 +263,7 @@ const ProductDetails = () => {
                                         <MessageCircle size={18} />
                                         Send message
                                     </button>
-                                    <WishlistButton
+                                    <WishListsButton
                                         withLabel
                                         product={{
                                             id: product.id,

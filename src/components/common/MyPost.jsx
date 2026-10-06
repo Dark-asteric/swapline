@@ -33,7 +33,6 @@ const CATEGORIES = [
 const formatPrice = (value) => `$${Number(value).toFixed(2)}`;
 const millis = (ts) => (ts?.toMillis ? ts.toMillis() : Date.now());
 
-// Live count of pending offers for one product
 const Activity = ({ productId }) => {
     const [pendingOffers, setPendingOffers] = useState(0);
 
