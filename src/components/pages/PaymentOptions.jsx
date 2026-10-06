@@ -57,8 +57,6 @@ const PaymentOptions = () => {
         e.preventDefault();
         const fd = new FormData(e.target);
         const label = fd.get("label").trim();
-
-        // Safety: this app has no payment processor, so never keep card numbers.
         if (/\d{12,}/.test(label.replace(/[\s-]/g, ""))) {
             return toast.error("Don't enter full card or account numbers. Use the last 4 digits only.");
         }

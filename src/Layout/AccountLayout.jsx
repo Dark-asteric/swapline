@@ -26,8 +26,6 @@ const MENU = [
 const linkClass = ({ isActive }) =>
     isActive ? "text-[#DB4444]" : "text-gray-500 hover:text-base-content";
 
-// Shell for every "My Account" page: breadcrumb, welcome line and sidebar.
-// The page itself renders in <Outlet />.
 const AccountLayout = () => {
     const { user } = useContext(AuthContext);
 

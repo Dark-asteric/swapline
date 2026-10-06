@@ -11,12 +11,9 @@ const CartProvider = ({ children }) => {
     const { user } = useContext(AuthContext);
     const uid = user?.uid;
 
-    // Remember which user the loaded items belong to, so one user's cart can
-    // never flash on screen for the next user who logs in.
     const [cart, setCart] = useState({ uid: null, items: [] });
     const itemsRef = useRef([]);
 
-    // Delete the old cart that was shared by everyone on this browser
     useEffect(() => {
         try {
             localStorage.removeItem(OLD_SHARED_KEY);
@@ -25,7 +22,6 @@ const CartProvider = ({ children }) => {
         }
     }, []);
 
-    // Live-sync the logged-in user's cart
     useEffect(() => {
         if (!uid) return;
         return onSnapshot(
@@ -50,7 +46,6 @@ const CartProvider = ({ children }) => {
         );
     };
 
-    // product: { id, name (or title), price, image (or img) }
     const addToCart = (product, quantity = 1) => {
         if (!uid) return;
         const current = itemsRef.current;

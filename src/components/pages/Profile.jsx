@@ -61,12 +61,10 @@ const Profile = () => {
     const [saving, setSaving] = useState(false);
     const fileInputRef = useRef(null);
 
-    // Only email/password accounts have a password to change (not Google)
     const canChangePassword = !!auth.currentUser?.providerData.some(
         (p) => p.providerId === "password"
     );
 
-    // Load the saved address
     useEffect(() => {
         if (!user?.uid) return;
         getDoc(doc(db, "users", user.uid))
@@ -131,7 +129,6 @@ const Profile = () => {
 
         setSaving(true);
         try {
-            // Password first: if it fails, nothing else is changed.
             if (wantsPassword) {
                 const authUser = auth.currentUser;
                 await reauthenticateWithCredential(
