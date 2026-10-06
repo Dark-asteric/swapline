@@ -47,7 +47,12 @@ const PaymentOptions = () => {
                 setLoading(false);
             },
             (error) => {
-                toast.error("Payment options: " + error.message);
+                console.error("Payment options failed:", {
+                    path: `users/${user.uid}/payments`,
+                    project: db.app.options.projectId,
+                    code: error.code,
+                });
+                toast.error(`Payment options [${db.app.options.projectId}]: ${error.message}`);
                 setLoading(false);
             }
         );
@@ -57,6 +62,8 @@ const PaymentOptions = () => {
         e.preventDefault();
         const fd = new FormData(e.target);
         const label = fd.get("label").trim();
+
+        // Safety: this app has no payment processor, so never keep card numbers.
         if (/\d{12,}/.test(label.replace(/[\s-]/g, ""))) {
             return toast.error("Don't enter full card or account numbers. Use the last 4 digits only.");
         }

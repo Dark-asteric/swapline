@@ -116,7 +116,7 @@ const PostProduct = () => {
                 }),
                 "Saving to Firestore"
             );
-            // console.log("3. saved with id:", docRef.id);
+            console.log("3. saved with id:", docRef.id);
 
             toast.success("Product posted!");
             navigate("/shop");
