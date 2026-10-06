@@ -9,7 +9,7 @@ import {
 import toast from "react-hot-toast";
 import app, { db } from "../../firebase/firebase.config";
 import { AuthContext } from "../../provider/AuthContext";
-import { uploadImage } from "../../utils/UploadImage";
+import { UploadImage } from "../../utils/UploadImage";
 
 const auth = getAuth(app);
 
@@ -139,7 +139,7 @@ const Profile = () => {
             }
 
             let photoURL = user.photoURL || "";
-            if (file) photoURL = await uploadImage(file);
+            if (file) photoURL = await UploadImage(file);
 
             const displayName = [first, last].filter(Boolean).join(" ");
             await updateUser({ displayName, photoURL });

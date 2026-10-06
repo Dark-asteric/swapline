@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { ImagePlus, X } from "lucide-react";
 import { db } from "../../firebase/firebase.config";
 import { AuthContext } from "../../provider/AuthContext";
-import { uploadImage } from "../../utils/uploadImage";
+import { UploadImage } from "../../utils/UploadImage";
 
 const CONDITIONS = ["New", "Like new", "Good", "Fair", "For parts"];
 const CATEGORIES = [
@@ -92,7 +92,7 @@ const PostProduct = () => {
         try {
             console.log("1. uploading images...");
             const urls = await withTimeout(
-                Promise.all(images.map((img) => uploadImage(img.file))),
+                Promise.all(images.map((img) => UploadImage(img.file))),
                 "Image upload"
             );
             console.log("2. images uploaded:", urls);

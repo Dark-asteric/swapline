@@ -1,5 +1,5 @@
 // Uploads one image file to imgbb and returns a permanent direct URL.
-export const uploadImage = async (file) => {
+export const UploadImage = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
 
