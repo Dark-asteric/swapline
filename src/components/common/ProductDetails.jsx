@@ -183,7 +183,7 @@ const ProductDetails = () => {
     return (
         <>
             <Toaster position="top-center" />
-            <div className="mt-24 px-6 pb-16 max-w-6xl mx-auto">
+            <div className="mt-24 px-20 pb-16 mx-auto">
                 <div className="grid gap-10 md:grid-cols-2">
                     <ProductGallery images={images} alt={product.name} />
 
@@ -245,11 +245,17 @@ const ProductDetails = () => {
                                             price: product.price,
                                             image: product.image,
                                         }}
-                                        className="btn btn-neutral rounded-2xl flex-1"
+                                        className="btn btn-neutral px-8 py-5 rounded-2xl flex-1"
                                     />
-                                    <button
+                                    {/* <button
                                         onClick={() => setTab("offers")}
                                         className="btn btn-outline rounded-2xl flex-1"
+                                    >
+                                        Make an offer
+                                    </button> */}
+                                    <button
+                                        onClick={() => setTab("offers")}
+                                        className="btn btn-outline rounded-2xl sm:w-auto sm:flex-1 text-sm sm:text-base px-8 sm:px-6 py-5"
                                     >
                                         Make an offer
                                     </button>
@@ -258,7 +264,7 @@ const ProductDetails = () => {
                                             if (requireLogin("send a message"))
                                                 navigate(`/chats/${product.id}_${user.uid}`);
                                         }}
-                                        className="btn btn-outline rounded-2xl flex-1"
+                                        className="btn btn-outline rounded-2xl sm:w-auto sm:flex-1 text-sm sm:text-base px-8 sm:px-6 py-5"
                                     >
                                         <MessageCircle size={18} />
                                         Send message
@@ -271,7 +277,7 @@ const ProductDetails = () => {
                                             price: product.price,
                                             image: product.image,
                                         }}
-                                        className="flex-1"
+                                        className="btn btn-outline rounded-2xl sm:w-auto sm:flex-1 text-sm sm:text-base px-8 sm:px-6 py-5"
                                     />
                                 </>
                             )}
