@@ -102,7 +102,7 @@ const Register = () => {
                     })
 
                 navigate('/');
-                console.log(user)
+                // console.log(user)
             })
             .catch(error => {
                 toast.error(error.message);

@@ -90,12 +90,12 @@ const PostProduct = () => {
 
         setSaving(true);
         try {
-            console.log("1. uploading images...");
+            // console.log("1. uploading images...");
             const urls = await withTimeout(
                 Promise.all(images.map((img) => UploadImage(img.file))),
                 "Image upload"
             );
-            console.log("2. images uploaded:", urls);
+            // console.log("2. images uploaded:", urls);
 
             const docRef = await withTimeout(
                 addDoc(collection(db, "products"), {
@@ -116,7 +116,7 @@ const PostProduct = () => {
                 }),
                 "Saving to Firestore"
             );
-            console.log("3. saved with id:", docRef.id);
+            // console.log("3. saved with id:", docRef.id);
 
             toast.success("Product posted!");
             navigate("/shop");
