@@ -1,0 +1,256 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Electronics",
+            "slug": "electronics"
+        },
+        {
+            "id": 2,
+            "name": "Fashion",
+            "slug": "fashion"
+        },
+        {
+            "id": 3,
+            "name": "Books",
+            "slug": "books"
+        },
+        {
+            "id": 4,
+            "name": "Furniture",
+            "slug": "furniture"
+        },
+        {
+            "id": 5,
+            "name": "Sports",
+            "slug": "sports"
+        },
+        {
+            "id": 6,
+            "name": "Home",
+            "slug": "home"
+        },
+        {
+            "id": 7,
+            "name": "Toys",
+            "slug": "toys"
+        },
+        {
+            "id": 8,
+            "name": "Vehicles",
+            "slug": "vehicles"
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "title": "Wireless Headphones",
+            "price": 45,
+            "category": "electronics",
+            "condition": "Like new",
+            "location": "Paris",
+            "image": "https://picsum.photos/seed/headphones/600/450",
+            "description": "Bluetooth over-ear headphones with noise cancelling. Used for two months, comes with the original case.",
+            "seller": {
+                "name": "Sara",
+                "rating": 4.9
+            },
+            "createdAt": "2026-09-28T10:15:00Z"
+        },
+        {
+            "id": 2,
+            "title": "Laptop 14 inch, 16GB RAM",
+            "price": 520,
+            "category": "electronics",
+            "condition": "Good",
+            "location": "Lyon",
+            "image": "https://picsum.photos/seed/laptop/600/450",
+            "description": "Lightweight laptop, 512GB SSD, battery lasts about 7 hours. Small scratch on the lid.",
+            "seller": {
+                "name": "Karim",
+                "rating": 4.7
+            },
+            "createdAt": "2026-09-27T16:40:00Z"
+        },
+        {
+            "id": 3,
+            "title": "Smartphone 128GB",
+            "price": 210,
+            "category": "electronics",
+            "condition": "Good",
+            "location": "Marseille",
+            "image": "https://picsum.photos/seed/phone/600/450",
+            "description": "Unlocked, screen protector fitted since day one. Charger included.",
+            "seller": {
+                "name": "Lea",
+                "rating": 4.8
+            },
+            "createdAt": "2026-09-26T09:05:00Z"
+        },
+        {
+            "id": 4,
+            "title": "Denim Jacket",
+            "price": 28,
+            "category": "fashion",
+            "condition": "Good",
+            "location": "Paris",
+            "image": "https://picsum.photos/seed/jacket/600/450",
+            "description": "Classic blue denim jacket, size M. Worn a few times.",
+            "seller": {
+                "name": "Nadia",
+                "rating": 4.6
+            },
+            "createdAt": "2026-09-29T12:30:00Z"
+        },
+        {
+            "id": 5,
+            "title": "Leather Handbag",
+            "price": 65,
+            "category": "fashion",
+            "condition": "Like new",
+            "location": "Nice",
+            "image": "https://picsum.photos/seed/handbag/600/450",
+            "description": "Brown leather handbag with two compartments and a zip pocket.",
+            "seller": {
+                "name": "Sofia",
+                "rating": 5.0
+            },
+            "createdAt": "2026-09-25T18:20:00Z"
+        },
+        {
+            "id": 6,
+            "title": "Learn JavaScript, 3rd Edition",
+            "price": 15,
+            "category": "books",
+            "condition": "Good",
+            "location": "Toulouse",
+            "image": "https://picsum.photos/seed/jsbook/600/450",
+            "description": "Programming book in good condition, a few highlighted pages.",
+            "seller": {
+                "name": "Omar",
+                "rating": 4.5
+            },
+            "createdAt": "2026-09-30T08:00:00Z"
+        },
+        {
+            "id": 7,
+            "title": "Classic Novels Box Set (6 books)",
+            "price": 30,
+            "category": "books",
+            "condition": "Like new",
+            "location": "Bordeaux",
+            "image": "https://picsum.photos/seed/novels/600/450",
+            "description": "Six paperback classics in a matching slipcase. Never re-read, no marks inside.",
+            "seller": {
+                "name": "Julie",
+                "rating": 4.9
+            },
+            "createdAt": "2026-09-24T14:10:00Z"
+        },
+        {
+            "id": 8,
+            "title": "Wooden Dining Table",
+            "price": 140,
+            "category": "furniture",
+            "condition": "Good",
+            "location": "Lille",
+            "image": "https://picsum.photos/seed/table/600/450",
+            "description": "Solid oak table for six people. Pickup only, 180 x 90 cm.",
+            "seller": {
+                "name": "Thomas",
+                "rating": 4.7
+            },
+            "createdAt": "2026-09-23T11:25:00Z"
+        },
+        {
+            "id": 9,
+            "title": "Grey Fabric Armchair",
+            "price": 80,
+            "category": "furniture",
+            "condition": "Good",
+            "location": "Paris",
+            "image": "https://picsum.photos/seed/armchair/600/450",
+            "description": "Comfortable armchair with removable cover that can be machine washed.",
+            "seller": {
+                "name": "Claire",
+                "rating": 4.8
+            },
+            "createdAt": "2026-09-30T19:45:00Z"
+        },
+        {
+            "id": 10,
+            "title": "Mountain Bike 27.5 inch",
+            "price": 260,
+            "category": "sports",
+            "condition": "Good",
+            "location": "Grenoble",
+            "image": "https://picsum.photos/seed/bike/600/450",
+            "description": "21 speeds, front suspension, recently serviced. Helmet not included.",
+            "seller": {
+                "name": "Mehdi",
+                "rating": 4.9
+            },
+            "createdAt": "2026-09-22T07:50:00Z"
+        },
+        {
+            "id": 11,
+            "title": "Yoga Mat and Blocks Set",
+            "price": 18,
+            "category": "sports",
+            "condition": "Like new",
+            "location": "Nantes",
+            "image": "https://picsum.photos/seed/yoga/600/450",
+            "description": "Non-slip 6mm mat with two foam blocks and a strap.",
+            "seller": {
+                "name": "Anais",
+                "rating": 4.6
+            },
+            "createdAt": "2026-10-01T09:30:00Z"
+        },
+        {
+            "id": 12,
+            "title": "Cordless Coffee Grinder",
+            "price": 35,
+            "category": "home",
+            "condition": "Like new",
+            "location": "Strasbourg",
+            "image": "https://picsum.photos/seed/grinder/600/450",
+            "description": "Burr grinder with 15 settings, USB rechargeable. Original box included.",
+            "seller": {
+                "name": "Hugo",
+                "rating": 4.7
+            },
+            "createdAt": "2026-10-01T13:15:00Z"
+        },
+        {
+            "id": 13,
+            "title": "Building Blocks Set, 800 pieces",
+            "price": 22,
+            "category": "toys",
+            "condition": "Good",
+            "location": "Paris",
+            "image": "https://picsum.photos/seed/blocks/600/450",
+            "description": "Complete set, all pieces counted before listing. Stored in a plastic box.",
+            "seller": {
+                "name": "Marie",
+                "rating": 4.8
+            },
+            "createdAt": "2026-09-21T15:00:00Z"
+        },
+        {
+            "id": 14,
+            "title": "Kids Electric Scooter",
+            "price": 75,
+            "category": "vehicles",
+            "condition": "Good",
+            "location": "Montpellier",
+            "image": "https://picsum.photos/seed/scooter/600/450",
+            "description": "Foldable scooter for ages 8 to 12, charger included. Top speed 15 km/h.",
+            "seller": {
+                "name": "Yanis",
+                "rating": 4.5
+            },
+            "createdAt": "2026-09-20T17:35:00Z"
+        }
+    ]
+}
