@@ -18,10 +18,9 @@ const CATEGORIES = [
     "Home & Garden",
     "Other",
 ];
-const MAX_IMAGES = 4;
+const MAX_IMAGES = 6;
 const MAX_SIZE_MB = 5;
 
-// Rejects with a clear message if a step hangs instead of waiting forever.
 const withTimeout = (promise, label, ms = 15000) =>
     Promise.race([
         promise,

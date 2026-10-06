@@ -17,8 +17,9 @@ import toast, { Toaster } from "react-hot-toast";
 import { MessageCircle, Trash2 } from "lucide-react";
 import { db } from "../../firebase/firebase.config";
 import { AuthContext } from "../../provider/AuthContext";
-import BuyButton from "./BuyButton";
-import WishlistButton from "./WishLists";
+import BuyButton from "../common/BuyButton";
+import WishlistButton from "../common/WishlistButton";
+import ProductGallery from "../common/ProductGallery";
 
 const formatPrice = (value) => `$${Number(value).toFixed(2)}`;
 const formatDate = (ts) => (ts?.toDate ? ts.toDate().toLocaleString() : "just now");
@@ -39,7 +40,6 @@ const ProductDetails = () => {
 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [activeImg, setActiveImg] = useState(0);
     const [tab, setTab] = useState("comments");
     const [comments, setComments] = useState([]);
     const [offers, setOffers] = useState([]);
@@ -188,32 +188,7 @@ const ProductDetails = () => {
             <Toaster position="top-center" />
             <div className="mt-24 px-6 pb-16 max-w-6xl mx-auto">
                 <div className="grid gap-10 md:grid-cols-2">
-                    {/* Gallery */}
-                    <div>
-                        <img
-                            src={images[activeImg] || "/favicon.svg"}
-                            alt={product.name}
-                            className="w-full aspect-square object-cover rounded-2xl bg-base-200"
-                            onError={(e) => {
-                                e.currentTarget.onerror = null;
-                                e.currentTarget.src = "/favicon.svg";
-                            }}
-                        />
-                        {images.length > 1 && (
-                            <div className="flex gap-2 mt-3">
-                                {images.map((src, i) => (
-                                    <img
-                                        key={src}
-                                        src={src}
-                                        alt={`${product.name} ${i + 1}`}
-                                        onClick={() => setActiveImg(i)}
-                                        className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${i === activeImg ? "border-primary" : "border-transparent"
-                                            }`}
-                                    />
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <ProductGallery images={images} alt={product.name} />
 
                     {/* Info */}
                     <div>
@@ -233,7 +208,7 @@ const ProductDetails = () => {
                             )}
                         </div>
 
-                        <p className="mt-5 whitespace-pre-line">
+                        <p className="mt-5 whitespace-pre-line text-gray-600">
                             {product.description}
                         </p>
 

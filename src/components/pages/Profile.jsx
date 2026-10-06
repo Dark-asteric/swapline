@@ -12,12 +12,14 @@ import { AuthContext } from "../../provider/AuthContext";
 import { uploadImage } from "../../utils/UploadImage";
 
 const auth = getAuth(app);
+
+const RED = "#DB4444";
 const MAX_SIZE_MB = 5;
 
 const inputClass =
-    "w-full bg-[#F5F5F5] rounded px-4 py-3 text-gray-700 placeholder:text-gray-400 outline-none " +
-    "focus:ring-2 focus:ring-blue-500/40 disabled:text-gray-400 disabled:cursor-not-allowed";
-const labelClass = "block mb-2 text-base text-black";
+    "w-full bg-base-200 rounded px-4 py-3 text-base-content placeholder:text-gray-400 outline-none " +
+    "focus:ring-2 focus:ring-[#DB4444]/40 disabled:text-gray-400 disabled:cursor-not-allowed";
+const labelClass = "block mb-2 text-base text-base-content";
 
 const EMPTY_PASSWORDS = { current: "", next: "", confirm: "" };
 
@@ -58,10 +60,13 @@ const Profile = () => {
     const [preview, setPreview] = useState("");
     const [saving, setSaving] = useState(false);
     const fileInputRef = useRef(null);
+
+    // Only email/password accounts have a password to change (not Google)
     const canChangePassword = !!auth.currentUser?.providerData.some(
         (p) => p.providerId === "password"
     );
 
+    // Load the saved address
     useEffect(() => {
         if (!user?.uid) return;
         getDoc(doc(db, "users", user.uid))
@@ -167,9 +172,9 @@ const Profile = () => {
         <>
             <form
                 onSubmit={handleSave}
-                className="rounded bg-white shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-16 md:py-12"
+                className="rounded bg-base-100 shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-16 md:py-12"
             >
-                <h2 className="text-xl font-medium mb-6 text-blue-600">
+                <h2 className="text-xl font-medium mb-6" style={{ color: RED }}>
                     Edit Your Profile
                 </h2>
 
@@ -179,7 +184,7 @@ const Profile = () => {
                         src={preview || user.photoURL || "/favicon.svg"}
                         alt="Profile"
                         referrerPolicy="no-referrer"
-                        className="w-16 h-16 rounded-full object-cover bg-[#F5F5F5]"
+                        className="w-16 h-16 rounded-full object-cover bg-base-200"
                         onError={(e) => {
                             e.currentTarget.onerror = null;
                             e.currentTarget.src = "/favicon.svg";
@@ -279,7 +284,7 @@ const Profile = () => {
                             />
                         </div>
                     ) : (
-                        <p className="text-sm text-gray-500 bg-[#F5F5F5] rounded px-4 py-3">
+                        <p className="text-sm text-gray-500 bg-base-200 rounded px-4 py-3">
                             You signed in with Google, so there is no password to change here.
                         </p>
                     )}

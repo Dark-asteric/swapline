@@ -10,9 +10,13 @@ import {
     where,
 } from "firebase/firestore";
 import toast, { Toaster } from "react-hot-toast";
-import { Pencil, Trash2 } from "lucide-react";
+import { ImagePlus, Pencil, Trash2, X } from "lucide-react";
 import { db } from "../../firebase/firebase.config";
 import { AuthContext } from "../../provider/AuthContext";
+import { uploadImage } from "../../utils/UploadImage";
+
+const MAX_PHOTOS = 6;
+const MAX_SIZE_MB = 5;
 
 const CONDITIONS = ["New", "Like new", "Good", "Fair", "For parts"];
 const CATEGORIES = [
@@ -55,6 +59,40 @@ const Activity = ({ productId }) => {
 
 const EditModal = ({ product, onClose }) => {
     const [saving, setSaving] = useState(false);
+    const [keep, setKeep] = useState(() =>
+        product.images?.length ? product.images : product.image ? [product.image] : []
+    );
+    const [newFiles, setNewFiles] = useState([]); // [{ file, preview }]
+
+    const addFiles = (e) => {
+        const selected = Array.from(e.target.files);
+        e.target.value = "";
+
+        const valid = [];
+        for (const file of selected) {
+            if (!file.type.startsWith("image/")) {
+                toast.error(`${file.name} is not an image.`);
+                continue;
+            }
+            if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+                toast.error(`${file.name} is larger than ${MAX_SIZE_MB} MB.`);
+                continue;
+            }
+            valid.push({ file, preview: URL.createObjectURL(file) });
+        }
+
+        const room = MAX_PHOTOS - keep.length - newFiles.length;
+        if (valid.length > room) {
+            toast.error(`A post can have up to ${MAX_PHOTOS} photos.`);
+            valid.slice(room).forEach((img) => URL.revokeObjectURL(img.preview));
+        }
+        setNewFiles([...newFiles, ...valid.slice(0, room)]);
+    };
+
+    const removeNew = (index) => {
+        URL.revokeObjectURL(newFiles[index].preview);
+        setNewFiles(newFiles.filter((_, i) => i !== index));
+    };
 
     const handleSave = async (e) => {
         e.preventDefault();
@@ -68,8 +106,15 @@ const EditModal = ({ product, onClose }) => {
         if (!(price > 0)) return toast.error("Enter a price greater than 0.");
         if (description.length < 10) return toast.error("Add a longer description.");
 
+        if (keep.length + newFiles.length === 0) {
+            return toast.error("A post needs at least one photo.");
+        }
+
         setSaving(true);
         try {
+            const uploaded = await Promise.all(newFiles.map((f) => uploadImage(f.file)));
+            const images = [...keep, ...uploaded];
+
             await updateDoc(doc(db, "products", product.id), {
                 name,
                 price,
@@ -77,6 +122,8 @@ const EditModal = ({ product, onClose }) => {
                 category: fd.get("category"),
                 location: fd.get("location").trim(),
                 description,
+                images,
+                image: images[0],
             });
             toast.success("Post updated");
             onClose();
@@ -152,6 +199,69 @@ const EditModal = ({ product, onClose }) => {
                             defaultValue={product.description}
                             className="textarea w-full h-28"
                         />
+
+                        <label className="label">
+                            Photos ({keep.length + newFiles.length}/{MAX_PHOTOS})
+                        </label>
+                        <div className="flex flex-wrap gap-3">
+                            {keep.map((src, i) => (
+                                <div key={src} className="relative">
+                                    <img
+                                        src={src}
+                                        alt={`Photo ${i + 1}`}
+                                        className="w-20 h-20 object-cover rounded-lg bg-base-200"
+                                    />
+                                    {i === 0 && (
+                                        <span className="badge badge-primary badge-xs absolute bottom-1 left-1">
+                                            Cover
+                                        </span>
+                                    )}
+                                    <button
+                                        type="button"
+                                        onClick={() => setKeep(keep.filter((_, k) => k !== i))}
+                                        className="btn btn-circle btn-xs btn-error absolute -top-2 -right-2"
+                                        aria-label="Remove photo"
+                                        disabled={saving}
+                                    >
+                                        <X size={12} />
+                                    </button>
+                                </div>
+                            ))}
+                            {newFiles.map((img, i) => (
+                                <div key={img.preview} className="relative">
+                                    <img
+                                        src={img.preview}
+                                        alt={`New photo ${i + 1}`}
+                                        className="w-20 h-20 object-cover rounded-lg"
+                                    />
+                                    <span className="badge badge-success badge-xs absolute bottom-1 left-1">
+                                        New
+                                    </span>
+                                    <button
+                                        type="button"
+                                        onClick={() => removeNew(i)}
+                                        className="btn btn-circle btn-xs btn-error absolute -top-2 -right-2"
+                                        aria-label="Remove new photo"
+                                        disabled={saving}
+                                    >
+                                        <X size={12} />
+                                    </button>
+                                </div>
+                            ))}
+                            {keep.length + newFiles.length < MAX_PHOTOS && (
+                                <label className="w-20 h-20 border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer text-gray-400 hover:border-primary hover:text-primary">
+                                    <ImagePlus size={22} />
+                                    <span className="text-xs mt-1">Add</span>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        multiple
+                                        onChange={addFiles}
+                                        className="hidden"
+                                    />
+                                </label>
+                            )}
+                        </div>
                     </fieldset>
 
                     <div className="modal-action">

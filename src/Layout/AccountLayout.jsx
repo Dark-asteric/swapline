@@ -24,8 +24,10 @@ const MENU = [
 ];
 
 const linkClass = ({ isActive }) =>
-    isActive ? "text-blue-700" : "text-gray-500 hover:text-black";
+    isActive ? "text-[#DB4444]" : "text-gray-500 hover:text-base-content";
 
+// Shell for every "My Account" page: breadcrumb, welcome line and sidebar.
+// The page itself renders in <Outlet />.
 const AccountLayout = () => {
     const { user } = useContext(AuthContext);
 
@@ -39,32 +41,32 @@ const AccountLayout = () => {
                             Home
                         </Link>
                         <span className="mx-3">/</span>
-                        <span className="text-black">My Account</span>
+                        <span className="text-base-content">My Account</span>
                     </nav>
                     <p>
                         Welcome!{" "}
-                        <span className="text-blue-500 font-medium">
+                        <span className="text-[#DB4444]">
                             {user?.displayName || user?.email}
                         </span>
                     </p>
                 </div>
 
                 <div className="grid gap-10 md:grid-cols-[240px_1fr]">
-                    <aside className="space-y-6 ">
+                    <aside className="space-y-6">
                         {MENU.map((group) => (
                             <div key={group.heading}>
                                 {group.to ? (
                                     <NavLink
                                         to={group.to}
                                         className={({ isActive }) =>
-                                            `text-base font-medium ${isActive ? "text-blue-500" : "text-black"
+                                            `text-base font-medium ${isActive ? "text-[#DB4444]" : "text-base-content"
                                             }`
                                         }
                                     >
                                         {group.heading}
                                     </NavLink>
                                 ) : (
-                                    <h3 className="text-base font-medium text-black">
+                                    <h3 className="text-base font-medium text-base-content">
                                         {group.heading}
                                     </h3>
                                 )}

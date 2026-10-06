@@ -75,7 +75,7 @@ const MyOrders = ({ view = "all" }) => {
     const visible = orders.filter(config.filter);
 
     return (
-        <div className="rounded bg-white shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-12">
+        <div className="rounded bg-base-100 shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-12">
             <h2 className="text-xl font-medium text-[#DB4444] mb-6">{config.title}</h2>
 
             {loading ? (
@@ -114,7 +114,7 @@ const MyOrders = ({ view = "all" }) => {
                                             <img
                                                 src={item.image || "/favicon.svg"}
                                                 alt={item.name}
-                                                className="w-14 h-14 rounded object-cover bg-[#F5F5F5]"
+                                                className="w-14 h-14 rounded object-cover bg-base-200"
                                                 onError={(e) => {
                                                     e.currentTarget.onerror = null;
                                                     e.currentTarget.src = "/favicon.svg";
@@ -140,11 +140,11 @@ const MyOrders = ({ view = "all" }) => {
 
                                 <div className="mt-4 pt-4 border-t grid gap-2 sm:grid-cols-2 text-sm text-gray-500">
                                     <p>
-                                        <span className="text-black">Deliver to:</span> {o.address?.fullName},{" "}
+                                        <span className="text-base-content">Deliver to:</span> {o.address?.fullName},{" "}
                                         {o.address?.street}, {o.address?.city}, {o.address?.country}
                                     </p>
                                     <p>
-                                        <span className="text-black">Payment:</span> {o.paymentMethod?.type}
+                                        <span className="text-base-content">Payment:</span> {o.paymentMethod?.type}
                                         {o.paymentMethod?.label ? ` (${o.paymentMethod.label})` : ""}
                                     </p>
                                 </div>

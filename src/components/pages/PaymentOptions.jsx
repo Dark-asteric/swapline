@@ -21,7 +21,7 @@ const HINTS = {
 };
 
 const inputClass =
-    "w-full bg-[#F5F5F5] rounded px-4 py-3 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500/40";
+    "w-full bg-base-200 rounded px-4 py-3 text-base-content outline-none focus:ring-2 focus:ring-[#DB4444]/40";
 
 const PaymentOptions = () => {
     const { user } = useContext(AuthContext);
@@ -57,6 +57,8 @@ const PaymentOptions = () => {
         e.preventDefault();
         const fd = new FormData(e.target);
         const label = fd.get("label").trim();
+
+        // Safety: this app has no payment processor, so never keep card numbers.
         if (/\d{12,}/.test(label.replace(/[\s-]/g, ""))) {
             return toast.error("Don't enter full card or account numbers. Use the last 4 digits only.");
         }
@@ -117,9 +119,9 @@ const PaymentOptions = () => {
     };
 
     return (
-        <div className="rounded bg-white shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-12">
+        <div className="rounded bg-base-100 shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-12">
             <div className="flex items-center justify-between mb-2">
-                <h2 className="text-xl font-medium text-blue-600">My Payment Options</h2>
+                <h2 className="text-xl font-medium text-[#DB4444]">My Payment Options</h2>
                 {!adding && (
                     <button onClick={() => setAdding(true)} className="btn btn-primary btn-sm">
                         <Plus size={16} /> Add option

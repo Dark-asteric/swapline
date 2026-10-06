@@ -18,6 +18,7 @@ import AddressBook from "../components/pages/AddressBook";
 import PaymentOptions from "../components/pages/PaymentOptions";
 import MyOrders from "../components/pages/MyOrders";
 import WishlistButton from "../components/common/WishLists";
+import ContactUs from "../components/pages/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
                     { path: "cancellations", element: <MyOrders view="cancellations" /> },
                     { path: "wishlist", element: <WishlistButton /> },
                 ],
+            },
+            { 
+                path: "contact-us", 
+                element: <ContactUs /> 
             },
             { 
                 path: "/about", 

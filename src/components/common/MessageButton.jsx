@@ -6,8 +6,6 @@ import { db } from "../../firebase/firebase.config";
 import { AuthContext } from "../../provider/AuthContext";
 import { isUnread } from "../../utils/chatUtils";
 
-// Navbar button for /chats with a live badge showing how many
-// conversations have unread messages. Hidden for guests.
 const MessageButton = () => {
     const { user } = useContext(AuthContext);
     const uid = user?.uid;

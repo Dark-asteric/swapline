@@ -14,7 +14,7 @@ import { AuthContext } from "../../provider/AuthContext";
 const LABELS = ["Home", "Work", "Other"];
 
 const inputClass =
-    "w-full bg-[#F5F5F5] rounded px-4 py-3 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500/40";
+    "w-full bg-base-200 rounded px-4 py-3 text-base-content outline-none focus:ring-2 focus:ring-[#DB4444]/40";
 
 const AddressForm = ({ initial, onCancel, onSave, saving }) => (
     <div className="modal modal-open">
@@ -87,7 +87,7 @@ const AddressBook = () => {
     const { user } = useContext(AuthContext);
     const [addresses, setAddresses] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [editing, setEditing] = useState(null); 
+    const [editing, setEditing] = useState(null); // null | {} (new) | address
     const [saving, setSaving] = useState(false);
 
     const col = collection(db, "users", user.uid, "addresses");
@@ -187,9 +187,9 @@ const AddressBook = () => {
     };
 
     return (
-        <div className="rounded bg-white shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-12">
+        <div className="rounded bg-base-100 shadow-[0_1px_13px_rgba(0,0,0,0.08)] px-6 py-10 md:px-12">
             <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-medium text-blue-600">Address Book</h2>
+                <h2 className="text-xl font-medium text-[#DB4444]">Address Book</h2>
                 <button onClick={() => setEditing({})} className="btn btn-primary btn-sm">
                     <Plus size={16} /> Add address
                 </button>
@@ -206,7 +206,7 @@ const AddressBook = () => {
             ) : (
                 <div className="grid gap-4 md:grid-cols-2">
                     {addresses.map((a) => (
-                        <div key={a.id} className="rounded p-4 space-y-1">
+                        <div key={a.id} className="rounded border p-4 space-y-1">
                             <div className="flex items-center gap-2">
                                 <span className="font-semibold">{a.label}</span>
                                 {a.isDefault && <span className="badge badge-primary badge-sm">Default</span>}

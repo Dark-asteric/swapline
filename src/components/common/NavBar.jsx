@@ -61,7 +61,7 @@ const NavBar = () => {
         <>
             <li className="text-xl mr-2"><NavLink to="/" className={linkClass}>Home</NavLink></li>
             <li className="text-xl mr-2"><NavLink to="/shop" className={linkClass}>Shop</NavLink></li>
-            <li className="text-xl mr-2"><NavLink to="/contact" className={linkClass}>Contact Us</NavLink></li>
+            <li className="text-xl mr-2"><NavLink to="/contact-us" className={linkClass}>Contact Us</NavLink></li>
             <li className="text-xl mr-2"><NavLink to="/about" className={linkClass}>About Us</NavLink></li>
             {user && <li className='text-xl mr-2'><NavLink to="/profile" className={linkClass}>My Profile</NavLink></li>}
         </>

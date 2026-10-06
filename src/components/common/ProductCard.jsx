@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import BuyButton from "./BuyButton";
-import WishLists from "./WishLists";
+import WishListsButton from "./WishListsButton";
 
 const formatPrice = (value) => `$${Number(value).toFixed(2)}`;
 
@@ -30,7 +30,7 @@ const ProductCard = ({ product: p, badge, meta }) => {
                 </figure>
             </Link>
 
-            <WishLists
+            <WishListsButton
                 product={{ id: p.id, name: p.name, price: p.price, image: p.image }}
                 className="absolute top-3 right-3 z-10"
             />
